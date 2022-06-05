@@ -29,6 +29,7 @@ class HomeController: UIViewController {
     
     func setupMapView(){
         mapView.showsUserLocation = true
+        addOnUserTapAction(mapView: mapView, target: self, action: #selector(addAnnotation))
     }
     
     func setupSearchBar(){
@@ -65,6 +66,28 @@ class HomeController: UIViewController {
         let newCoordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let newRegion = MKCoordinateRegion(center: newCoordinates, latitudinalMeters: 200000, longitudinalMeters: 200000)
         self.mapView.setRegion(newRegion, animated: true)
+    }
+    
+    @objc func addAnnotation(gestureRecognizer: UIGestureRecognizer){
+        if gestureRecognizer.state == .began {
+            let location = getTappedLocation(mapView: mapView, gestureRecognizer: gestureRecognizer)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = "You created this annotation!"
+            mapView.removeAnnotations(mapView.annotations)
+            mapView.addAnnotation(annotation)
+        }
+    }
+    
+    func getTappedLocation(mapView: MKMapView, gestureRecognizer: UIGestureRecognizer) -> CLLocationCoordinate2D{
+        let touchPoint = gestureRecognizer.location(in: mapView)
+        return mapView.convert(touchPoint, toCoordinateFrom: mapView)
+    }
+    
+    func addOnUserTapAction(mapView: MKMapView, target: AnyObject, action: Selector, tapDuration: Double = 1){
+        let longPressRecognizer = UILongPressGestureRecognizer(target: target, action: action)
+        longPressRecognizer.minimumPressDuration = tapDuration
+        mapView.addGestureRecognizer(longPressRecognizer)
     }
     
     func setupLocationManager(){
