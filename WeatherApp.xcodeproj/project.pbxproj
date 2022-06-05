@@ -22,6 +22,8 @@
 		0BECF68D284BE7D500041459 /* Saira-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BECF68C284BE7D500041459 /* Saira-Medium.ttf */; };
 		0BECF68F284BE7FF00041459 /* Saira-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BECF68E284BE7FF00041459 /* Saira-Regular.ttf */; };
 		0BECF691284BE81600041459 /* Saira-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BECF690284BE81600041459 /* Saira-SemiBold.ttf */; };
+		0BECF694284C0B8900041459 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BECF693284C0B8900041459 /* UIImage+Extension.swift */; };
+		0BECF696284C0B9F00041459 /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BECF695284C0B9F00041459 /* UISearchBar+Extension.swift */; };
 		6AA2FA631C6D357431842EDB /* Pods_WeatherAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029967BF1E3D7FF6AAADD02F /* Pods_WeatherAppTests.framework */; };
 		7A2D17FB57CADCFCB1BE22AC /* Pods_WeatherApp_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C74E7497A54AD09270975B /* Pods_WeatherApp_WeatherAppUITests.framework */; };
 		E26D9163F24C38D832C1FDE8 /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8880EC745A3678972D06531C /* Pods_WeatherApp.framework */; };
@@ -66,6 +68,8 @@
 		0BECF68C284BE7D500041459 /* Saira-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saira-Medium.ttf"; sourceTree = "<group>"; };
 		0BECF68E284BE7FF00041459 /* Saira-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saira-Regular.ttf"; sourceTree = "<group>"; };
 		0BECF690284BE81600041459 /* Saira-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saira-SemiBold.ttf"; sourceTree = "<group>"; };
+		0BECF693284C0B8900041459 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		0BECF695284C0B9F00041459 /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 		1C16F12221470334F0B36EE0 /* Pods-WeatherApp-WeatherAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp-WeatherAppUITests.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp-WeatherAppUITests/Pods-WeatherApp-WeatherAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3BE28DE8A8E74DD64BEC5E6A /* Pods-WeatherAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppTests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherAppTests/Pods-WeatherAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8529EB4D444481ACBBCF348E /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 		0BECF684284BE78800041459 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				0BECF692284C0B6A00041459 /* Extensions */,
 				0BECF685284BE79100041459 /* Fonts */,
 			);
 			path = Commons;
@@ -208,6 +213,15 @@
 				0BECF688284BE7C100041459 /* Saira-ExtraBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0BECF692284C0B6A00041459 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0BECF693284C0B8900041459 /* UIImage+Extension.swift */,
+				0BECF695284C0B9F00041459 /* UISearchBar+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		912BC6980D100D774F24CFCE /* Frameworks */ = {
@@ -479,8 +493,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BECF655284AC42100041459 /* HomeController.swift in Sources */,
+				0BECF696284C0B9F00041459 /* UISearchBar+Extension.swift in Sources */,
 				0BECF651284AC42100041459 /* AppDelegate.swift in Sources */,
 				0BECF653284AC42100041459 /* SceneDelegate.swift in Sources */,
+				0BECF694284C0B8900041459 /* UIImage+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
