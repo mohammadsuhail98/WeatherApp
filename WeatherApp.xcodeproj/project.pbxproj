@@ -24,6 +24,8 @@
 		0BECF691284BE81600041459 /* Saira-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BECF690284BE81600041459 /* Saira-SemiBold.ttf */; };
 		0BECF694284C0B8900041459 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BECF693284C0B8900041459 /* UIImage+Extension.swift */; };
 		0BECF696284C0B9F00041459 /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BECF695284C0B9F00041459 /* UISearchBar+Extension.swift */; };
+		0BECF699284E83C800041459 /* LocationDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BECF698284E83C800041459 /* LocationDirection.swift */; };
+		0BECF69C284E852C00041459 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BECF69B284E852C00041459 /* LocationHelper.swift */; };
 		6AA2FA631C6D357431842EDB /* Pods_WeatherAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 029967BF1E3D7FF6AAADD02F /* Pods_WeatherAppTests.framework */; };
 		7A2D17FB57CADCFCB1BE22AC /* Pods_WeatherApp_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C74E7497A54AD09270975B /* Pods_WeatherApp_WeatherAppUITests.framework */; };
 		E26D9163F24C38D832C1FDE8 /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8880EC745A3678972D06531C /* Pods_WeatherApp.framework */; };
@@ -70,6 +72,8 @@
 		0BECF690284BE81600041459 /* Saira-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saira-SemiBold.ttf"; sourceTree = "<group>"; };
 		0BECF693284C0B8900041459 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		0BECF695284C0B9F00041459 /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
+		0BECF698284E83C800041459 /* LocationDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDirection.swift; sourceTree = "<group>"; };
+		0BECF69B284E852C00041459 /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		1C16F12221470334F0B36EE0 /* Pods-WeatherApp-WeatherAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp-WeatherAppUITests.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp-WeatherAppUITests/Pods-WeatherApp-WeatherAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3BE28DE8A8E74DD64BEC5E6A /* Pods-WeatherAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppTests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherAppTests/Pods-WeatherAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8529EB4D444481ACBBCF348E /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 		0BECF684284BE78800041459 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				0BECF69A284E851D00041459 /* Helpers */,
+				0BECF697284E83B600041459 /* Enums */,
 				0BECF692284C0B6A00041459 /* Extensions */,
 				0BECF685284BE79100041459 /* Fonts */,
 			);
@@ -222,6 +228,22 @@
 				0BECF695284C0B9F00041459 /* UISearchBar+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0BECF697284E83B600041459 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				0BECF698284E83C800041459 /* LocationDirection.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		0BECF69A284E851D00041459 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0BECF69B284E852C00041459 /* LocationHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		912BC6980D100D774F24CFCE /* Frameworks */ = {
@@ -496,6 +518,8 @@
 				0BECF696284C0B9F00041459 /* UISearchBar+Extension.swift in Sources */,
 				0BECF651284AC42100041459 /* AppDelegate.swift in Sources */,
 				0BECF653284AC42100041459 /* SceneDelegate.swift in Sources */,
+				0BECF699284E83C800041459 /* LocationDirection.swift in Sources */,
+				0BECF69C284E852C00041459 /* LocationHelper.swift in Sources */,
 				0BECF694284C0B8900041459 /* UIImage+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -672,6 +696,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C7TZHYALRJ;
@@ -691,6 +716,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.weather.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -703,6 +729,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C7TZHYALRJ;
@@ -722,6 +749,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.weather.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
