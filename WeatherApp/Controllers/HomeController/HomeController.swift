@@ -15,7 +15,9 @@ class HomeController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
-        
+    
+    var cardinalPoints = CardinalPoints()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -63,15 +65,12 @@ class HomeController: UIViewController {
             mapView.removeAnnotations(mapView.annotations)
             mapView.addAnnotation(annotation)
 
-            let north = LocationHelper.destinationBy(coordinates: location, direction: .north).coordinate
-            let south = LocationHelper.destinationBy(coordinates: location, direction: .south).coordinate
-            let east = LocationHelper.destinationBy(coordinates: location, direction: .east).coordinate
-            let west = LocationHelper.destinationBy(coordinates: location, direction: .west).coordinate
-
-            let list = [LocationHelper.makeAnnotation(withTitle: "North", coordinates: north),
-                        LocationHelper.makeAnnotation(withTitle: "South", coordinates: south),
-                        LocationHelper.makeAnnotation(withTitle: "East", coordinates: east),
-                        LocationHelper.makeAnnotation(withTitle: "West", coordinates: west),]
+            cardinalPoints = CardinalPoints(originalLocation: location)
+            
+            let list = [LocationHelper.makeAnnotation(withTitle: "North", coordinates: cardinalPoints.north),
+                        LocationHelper.makeAnnotation(withTitle: "South", coordinates: cardinalPoints.south),
+                        LocationHelper.makeAnnotation(withTitle: "East", coordinates: cardinalPoints.east),
+                        LocationHelper.makeAnnotation(withTitle: "West", coordinates: cardinalPoints.west)]
             
             mapView.addAnnotations(list)
             
