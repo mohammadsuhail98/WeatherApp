@@ -46,9 +46,12 @@ class HomeController: UIViewController {
     }
     
     func findCountry(withName name: String){
-        LocationHelper.findCountry(withName: name, mapView: self.mapView) { region in
+        LocationHelper.findCountry(withName: name, mapView: self.mapView) { [weak self] region in
+            guard let self = self else { return }
             if let region = region {
                 self.mapView.setRegion(region, animated: true)
+            } else {
+                self.presentAlert(title: "Sorry!", messsage: "We could not find the city/zip code you entered")
             }
         }
     }
