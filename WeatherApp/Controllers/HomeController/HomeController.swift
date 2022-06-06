@@ -28,6 +28,7 @@ class HomeController: UIViewController {
     }
     
     func setupMapView(){
+        mapView.showsCompass = true
         mapView.showsUserLocation = true
         addOnUserTapAction(mapView: mapView, target: self, action: #selector(addAnnotation))
     }
@@ -45,46 +46,36 @@ class HomeController: UIViewController {
     }
     
     func findCountry(withName name: String){
-        let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = name
-        request.region = mapView.region
-        let search = MKLocalSearch(request: request)
-        search.start { response, _ in
-            guard let response = response else {
-                print("This is nil")
-                return
+        LocationHelper.findCountry(withName: name, mapView: self.mapView) { region in
+            if let region = region {
+                self.mapView.setRegion(region, animated: true)
             }
-            if let latitude = response.mapItems.first?.placemark.coordinate.latitude,
-               let longitude = response.mapItems.first?.placemark.coordinate.longitude {
-                self.setNewRegion(latitude: latitude, longitude: longitude)
-            }
-            
         }
-    }
-    
-    func setNewRegion(latitude: CLLocationDegrees, longitude: CLLocationDegrees, regionRadius: CLLocationDistance = 200000){
-        let newCoordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let newRegion = MKCoordinateRegion(center: newCoordinates, latitudinalMeters: 200000, longitudinalMeters: 200000)
-        self.mapView.setRegion(newRegion, animated: true)
     }
     
     @objc func addAnnotation(gestureRecognizer: UIGestureRecognizer){
         if gestureRecognizer.state == .began {
-            let location = getTappedLocation(mapView: mapView, gestureRecognizer: gestureRecognizer)
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = location
-            annotation.title = "You created this annotation!"
+            let location = LocationHelper.getTappedLocation(mapView: mapView, gestureRecognizer: gestureRecognizer)
+            let annotation = LocationHelper.makeAnnotation(withTitle: "You created this annotation!", coordinates: location)
             mapView.removeAnnotations(mapView.annotations)
             mapView.addAnnotation(annotation)
+
+            let north = LocationHelper.destinationBy(coordinates: location, direction: .north).coordinate
+            let south = LocationHelper.destinationBy(coordinates: location, direction: .south).coordinate
+            let east = LocationHelper.destinationBy(coordinates: location, direction: .east).coordinate
+            let west = LocationHelper.destinationBy(coordinates: location, direction: .west).coordinate
+
+            let list = [LocationHelper.makeAnnotation(withTitle: "North", coordinates: north),
+                        LocationHelper.makeAnnotation(withTitle: "South", coordinates: south),
+                        LocationHelper.makeAnnotation(withTitle: "East", coordinates: east),
+                        LocationHelper.makeAnnotation(withTitle: "West", coordinates: west),]
+            
+            mapView.addAnnotations(list)
+            
         }
     }
     
-    func getTappedLocation(mapView: MKMapView, gestureRecognizer: UIGestureRecognizer) -> CLLocationCoordinate2D{
-        let touchPoint = gestureRecognizer.location(in: mapView)
-        return mapView.convert(touchPoint, toCoordinateFrom: mapView)
-    }
-    
-    func addOnUserTapAction(mapView: MKMapView, target: AnyObject, action: Selector, tapDuration: Double = 1){
+    func addOnUserTapAction(mapView: MKMapView, target: AnyObject, action: Selector, tapDuration: Double = 1) {
         let longPressRecognizer = UILongPressGestureRecognizer(target: target, action: action)
         longPressRecognizer.minimumPressDuration = tapDuration
         mapView.addGestureRecognizer(longPressRecognizer)
@@ -101,7 +92,6 @@ class HomeController: UIViewController {
     }
 
 }
-
 
 extension HomeController: UISearchBarDelegate {
     
