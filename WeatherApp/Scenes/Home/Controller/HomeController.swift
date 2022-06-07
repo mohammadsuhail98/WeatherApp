@@ -67,6 +67,14 @@ class HomeController: UIViewController {
 
             cardinalPoints = CardinalPoints(originalLocation: location)
             
+            WeatherAPIManager.getWeather(route: .fetchWeatherData(lat: location.latitude.toString, lon: location.longitude.toString, exclude: "daily", appId: Constants.appID)) { weather in
+                
+                
+            } errorBlock: { error in
+                print(error)
+            }
+
+            
             let list = [LocationHelper.makeAnnotation(withTitle: "North", coordinates: cardinalPoints.north),
                         LocationHelper.makeAnnotation(withTitle: "South", coordinates: cardinalPoints.south),
                         LocationHelper.makeAnnotation(withTitle: "East", coordinates: cardinalPoints.east),
