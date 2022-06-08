@@ -11,6 +11,7 @@ target 'WeatherApp' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'STPopup', '~> 1.8.7'
   pod 'Actions', '~> 3.0.0'
+  pod 'MBProgressHUD', '~> 1.2.0'
 
   target 'WeatherAppTests' do
     inherit! :search_paths
