@@ -16,7 +16,11 @@ struct CurrentWeather: Codable {
     var rain: Rain?
     
     var tempC: Double? {
-        return Double(String(format: "%.1f", (temp ?? 0) - 273.15))
+        if let temp = temp {
+            return Double(String(format: "%.1f", (temp) - 273.15))
+        } else {
+            return nil
+        }
     }
     var rainAmount: Double? {
         return rain?.the1H
