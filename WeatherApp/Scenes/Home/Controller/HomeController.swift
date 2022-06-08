@@ -8,6 +8,8 @@
 import UIKit
 import MapKit
 import CoreLocation
+import STPopup
+import Actions
 
 class HomeController: UIViewController {
 
@@ -18,6 +20,12 @@ class HomeController: UIViewController {
     
     fileprivate var viewModel: HomeViewModel?
     fileprivate var cardinalPoints = CardinalPoints()
+    
+    var highestTemp = Weather()
+    var highestHum = Weather()
+    var highestWindSpeen = Weather()
+    var highestRainRate = Weather()
+    var annotation = MKPointAnnotation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +40,7 @@ class HomeController: UIViewController {
     }
     
     func setupMapView(){
+        mapView.delegate = self
         mapView.showsCompass = true
         mapView.showsUserLocation = true
         addOnUserTapAction(mapView: mapView, target: self, action: #selector(addAnnotation))
@@ -63,7 +72,7 @@ class HomeController: UIViewController {
     @objc func addAnnotation(gestureRecognizer: UIGestureRecognizer){
         if gestureRecognizer.state == .began {
             let originalLocation = LocationHelper.getTappedLocation(mapView: mapView, gestureRecognizer: gestureRecognizer)
-            let annotation = LocationHelper.makeAnnotation(withTitle: "You created this annotation!", coordinates: originalLocation)
+            annotation = LocationHelper.makeAnnotation(withTitle: "\(originalLocation.latitude) - \(originalLocation.longitude)", coordinates: originalLocation)
             mapView.removeAnnotations(mapView.annotations)
             mapView.addAnnotation(annotation)
             
@@ -97,10 +106,41 @@ class HomeController: UIViewController {
         locationManager.startUpdatingLocation()
     }
     
-    @objc func closeKeyboard(){
-        self.view.endEditing(true)
+    func showFinalData(weather: [Weather]){
+        highestTemp = weather.filter({ $0.current?.highestTemp ?? false}).first ?? Weather()
+        highestHum = weather.filter({ $0.current?.highestHumidity ?? false}).first ?? Weather()
+        highestWindSpeen = weather.filter({ $0.current?.highestWindSpeed ?? false}).first ?? Weather()
+        highestRainRate = weather.filter({ $0.current?.highestRainRate ?? false}).first ?? Weather()
+        
+        let highestWeatherStatsVC = HighestStatsViewController(nibName: "HighestStatsViewController", bundle: nil)
+        highestWeatherStatsVC.highestTemp = highestTemp
+        highestWeatherStatsVC.highestHum = highestHum
+        highestWeatherStatsVC.highestWindSpeed = highestWindSpeen
+        highestWeatherStatsVC.highestRain = highestRainRate
+        
+        showPopup(WithController: highestWeatherStatsVC)
+    }
+    
+    func showPopup(WithController controller: UIViewController){
+        let popup = STPopupController(rootViewController: controller)
+        popup.style = .formSheet
+        popup.setNavigationBarHidden(true, animated: false)
+        popup.backgroundView?.addTap(action: { _ in
+            self.mapView.deselectAnnotation(self.annotation, animated: true)
+            popup.dismiss()
+        })
+        popup.containerView.backgroundColor = .clear
+        popup.present(in: self)
     }
 
+}
+
+extension HomeController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        self.showFinalData(weather: [highestTemp, highestHum, highestWindSpeen, highestRainRate])
+    }
+    
 }
 
 extension HomeController: UISearchBarDelegate {
@@ -115,19 +155,7 @@ extension HomeController: UISearchBarDelegate {
 extension HomeController: HomeViewModelDelegate {
     
     func dataFetched(weather: [Weather]) {
-        let highestTemp = weather.filter({ $0.current?.highestTemp ?? false}).first ?? Weather()
-        let highestHum = weather.filter({ $0.current?.highestHumidity ?? false}).first ?? Weather()
-        let highestWindSpeen = weather.filter({ $0.current?.highestWindSpeed ?? false}).first ?? Weather()
-        let highestRainRate = weather.filter({ $0.current?.highestRainRate ?? false}).first ?? Weather()
-
-        print("\(highestTemp.cardinalPoint?.title ?? "The Original Location") has the highest temperature: \(highestTemp.current?.tempC ?? 0)")
-        print("\(highestHum.cardinalPoint?.title ?? "The Original Location") has the highest humidity: \(highestHum.current?.humidity ?? 0)")
-        print("\(highestWindSpeen.cardinalPoint?.title ?? "The Original Location") has the highest wind Speed: \(highestWindSpeen.current?.windSpeed ?? 0)")
-        if let rain = highestRainRate.lastHourRain {
-            print("\(highestRainRate.cardinalPoint?.title ?? "The Original Location") has the highest rain amount: \(rain)")
-        } else {
-            print("It has not been rainig in any of the locations")
-        }
+        showFinalData(weather: weather)
     }
     
     func errorOccured(error: Error) {
