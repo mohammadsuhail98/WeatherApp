@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MW6-0y-PLb">
+                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="05a-R5-L2s"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fh-YS-SyN">
+                                <rect key="frame" x="0.0" y="104" width="414" height="792"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5fh-YS-SyN" secondAttribute="bottom" id="2oj-0F-duU"/>
+                            <constraint firstItem="MW6-0y-PLb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ATP-0p-SU6"/>
+                            <constraint firstItem="MW6-0y-PLb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Nz7-yE-d51"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5fh-YS-SyN" secondAttribute="trailing" id="hQI-Tg-vgN"/>
+                            <constraint firstItem="5fh-YS-SyN" firstAttribute="top" secondItem="MW6-0y-PLb" secondAttribute="bottom" id="rWz-Gw-BbW"/>
+                            <constraint firstItem="MW6-0y-PLb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uGr-8d-6uW"/>
+                            <constraint firstItem="5fh-YS-SyN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="y6b-71-Zfr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="5fh-YS-SyN" id="1qh-pN-MJi"/>
+                        <outlet property="searchBar" destination="MW6-0y-PLb" id="atF-gM-IJL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133" y="115"/>
+        </scene>
+    </scenes>
+</document>
