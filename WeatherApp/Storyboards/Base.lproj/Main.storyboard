@@ -29,13 +29,13 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fh-YS-SyN">
-                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="792"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5fh-YS-SyN" secondAttribute="bottom" id="2oj-0F-duU"/>
+                            <constraint firstAttribute="bottom" secondItem="5fh-YS-SyN" secondAttribute="bottom" id="2oj-0F-duU"/>
                             <constraint firstItem="MW6-0y-PLb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ATP-0p-SU6"/>
                             <constraint firstItem="MW6-0y-PLb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Nz7-yE-d51"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5fh-YS-SyN" secondAttribute="trailing" id="hQI-Tg-vgN"/>
