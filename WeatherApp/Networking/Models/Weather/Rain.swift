@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Rain
 struct Rain: Codable {
-    let the1H: Double
+    var the1H: Double?
 
     enum CodingKeys: String, CodingKey {
         case the1H = "1h"

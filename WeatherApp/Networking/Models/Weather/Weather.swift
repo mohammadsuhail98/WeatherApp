@@ -9,15 +9,24 @@ import Foundation
 
 // MARK: - Weather
 struct Weather: Codable {
-    let lat, lon: Double
-    let timezone: String
-    let timezoneOffset: Int
-    let current: CurrentWeather
-    let hourly: [CurrentWeather]
+    var lat, lon: Double?
+    var current: CurrentWeather?
+    var hourly: [CurrentWeather]?
+
+    var lastHourRain: Double? {
+        if hourly != nil && !(hourly?.isEmpty ?? true) {
+            if let rain = hourly?.first?.rain {
+                return rain.the1H
+            }
+            return nil
+        }
+        return nil
+    }
+    
+    var cardinalPoint: LocationDirection? = nil
 
     enum CodingKeys: String, CodingKey {
-        case lat, lon, timezone
-        case timezoneOffset = "timezone_offset"
+        case lat, lon
         case current, hourly
     }
 }
