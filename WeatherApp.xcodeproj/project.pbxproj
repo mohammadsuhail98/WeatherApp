@@ -11,6 +11,8 @@
 		0B3DFF3D284F4B8000021ACD /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3DFF3C284F4B8000021ACD /* CurrentWeather.swift */; };
 		0B3DFF3F284F4B9500021ACD /* Rain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3DFF3E284F4B9500021ACD /* Rain.swift */; };
 		0B3DFF49284F6D7A00021ACD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3DFF48284F6D7A00021ACD /* HomeViewModel.swift */; };
+		0B3DFF4E2850A7A000021ACD /* HighestStatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3DFF4D2850A7A000021ACD /* HighestStatsViewController.xib */; };
+		0B3DFF522850CC1300021ACD /* HighestStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3DFF512850CC1300021ACD /* HighestStatsViewController.swift */; };
 		0BECF651284AC42100041459 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BECF650284AC42100041459 /* AppDelegate.swift */; };
 		0BECF653284AC42100041459 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BECF652284AC42100041459 /* SceneDelegate.swift */; };
 		0BECF655284AC42100041459 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BECF654284AC42100041459 /* HomeController.swift */; };
@@ -67,6 +69,8 @@
 		0B3DFF3C284F4B8000021ACD /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		0B3DFF3E284F4B9500021ACD /* Rain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rain.swift; sourceTree = "<group>"; };
 		0B3DFF48284F6D7A00021ACD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		0B3DFF4D2850A7A000021ACD /* HighestStatsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HighestStatsViewController.xib; sourceTree = "<group>"; };
+		0B3DFF512850CC1300021ACD /* HighestStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighestStatsViewController.swift; sourceTree = "<group>"; };
 		0BECF64D284AC42100041459 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BECF650284AC42100041459 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BECF652284AC42100041459 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +155,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		0B3DFF4B2850A76F00021ACD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0B3DFF4C2850A77C00021ACD /* HighestStats */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0B3DFF4C2850A77C00021ACD /* HighestStats */ = {
+			isa = PBXGroup;
+			children = (
+				0B3DFF4D2850A7A000021ACD /* HighestStatsViewController.xib */,
+				0B3DFF512850CC1300021ACD /* HighestStatsViewController.swift */,
+			);
+			path = HighestStats;
+			sourceTree = "<group>";
+		};
 		0BECF644284AC42100041459 = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +202,7 @@
 				0BECF680284BE1DF00041459 /* Delegates */,
 				0BECF681284BE1ED00041459 /* Scenes */,
 				0BECF683284BE21800041459 /* Storyboards */,
+				0B3DFF4B2850A76F00021ACD /* Views */,
 				0BECF684284BE78800041459 /* Commons */,
 				0BECF65E284AC42300041459 /* Info.plist */,
 			);
@@ -470,6 +492,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B3DFF4E2850A7A000021ACD /* HighestStatsViewController.xib in Resources */,
 				0BECF68D284BE7D500041459 /* Saira-Medium.ttf in Resources */,
 				0BECF687284BE7B100041459 /* Saira-Bold.ttf in Resources */,
 				0BECF691284BE81600041459 /* Saira-SemiBold.ttf in Resources */,
@@ -625,6 +648,7 @@
 				0B3DFF3F284F4B9500021ACD /* Rain.swift in Sources */,
 				0BECF6AE284ECA5600041459 /* CardinalPoints.swift in Sources */,
 				0BECF694284C0B8900041459 /* UIImage+Extension.swift in Sources */,
+				0B3DFF522850CC1300021ACD /* HighestStatsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
