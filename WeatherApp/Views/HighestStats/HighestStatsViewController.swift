@@ -35,14 +35,17 @@ class HighestStatsViewController: UIViewController {
     }
     
     func fillData(){
-        self.highestStatsLbls[0].text = "Temprature \(highestTemp.current?.tempC.map{ "\($0)" } ?? "-")"
-        self.highestStatsImages[0].image = UIImage(named: highestTemp.cardinalPoint?.title.lowercased() ?? "original")
+        let tempratureInfo = "Temprature \(highestTemp.current?.tempC.map{ "\($0)" } ?? "-")"
+        self.highestStatsLbls[0].text = tempratureInfo
+        self.highestStatsImages[0].image = tempratureInfo.contains("-") ? UIImage(named: "none") : UIImage(named: highestTemp.cardinalPoint?.title.lowercased() ?? "original")
         
-        self.highestStatsLbls[1].text = "Humidity \(highestHum.current?.humidity.map{ "\($0)" } ?? "-")"
-        self.highestStatsImages[1].image = UIImage(named: highestHum.cardinalPoint?.title.lowercased() ?? "original")
+        let humidityInfo = "Humidity \(highestHum.current?.humidity.map{ "\($0)" } ?? "-")"
+        self.highestStatsLbls[1].text = humidityInfo
+        self.highestStatsImages[1].image = humidityInfo.contains("-") ? UIImage(named: "none") : UIImage(named: highestHum.cardinalPoint?.title.lowercased() ?? "original")
         
-        self.highestStatsLbls[2].text = "Wind Speed \(highestWindSpeed.current?.windSpeed.map{ "\($0)" } ?? "-")"
-        self.highestStatsImages[2].image = UIImage(named: highestWindSpeed.cardinalPoint?.title.lowercased() ?? "original")
+        let windInfo = "Wind Speed \(highestWindSpeed.current?.windSpeed.map{ "\($0)" } ?? "-")"
+        self.highestStatsLbls[2].text = windInfo
+        self.highestStatsImages[2].image = windInfo.contains("-") ? UIImage(named: "none") : UIImage(named: highestWindSpeed.cardinalPoint?.title.lowercased() ?? "original")
         
         if let rain = highestRain.lastHourRain {
             self.highestStatsLbls[3].text = "Rain \(rain)"
