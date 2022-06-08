@@ -22,4 +22,8 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    @objc func closeKeyboard(){
+        self.view.endEditing(true)
+    }
+    
 }
