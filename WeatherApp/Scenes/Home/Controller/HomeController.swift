@@ -162,9 +162,13 @@ extension HomeController: HomeViewModelDelegate {
         showFinalData(weather: weather)
     }
     
-    func errorOccured(error: Error) {
+    func errorOccured(error: NSError) {
         hideHUD()
-        self.presentAlert(title: "Sorry!", messsage: error.localizedDescription)
+        if let message = error.userInfo["message"] as? String {
+            self.presentAlert(title: "Sorry!", messsage: message)
+        } else {
+            self.presentAlert(title: "Sorry!", messsage: error.localizedDescription)
+        }
     }
     
 }

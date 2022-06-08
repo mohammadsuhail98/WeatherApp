@@ -66,5 +66,5 @@ class HomeViewModel {
 
 protocol HomeViewModelDelegate {
     func dataFetched(weather: [Weather])
-    func errorOccured(error: Error)
+    func errorOccured(error: NSError)
 }

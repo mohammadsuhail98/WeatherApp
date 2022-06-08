@@ -49,7 +49,7 @@ private extension APIClient {
             
             if response.response?.statusCode ?? 0 != 200 {
                 if let err = JSON(response.data ?? Data()).dictionaryObject {
-                    guard let errTitle = err["title"] as? String else {
+                    guard let errTitle = err["message"] as? String else {
                         if let err = response.error{
                             let e = err as NSError
                             let error = NSError(domain: e.domain, code: response.response?.statusCode ?? e.code, userInfo: e.userInfo)
