@@ -75,17 +75,20 @@ class HomeController: UIViewController {
             annotation = LocationHelper.makeAnnotation(withTitle: "\(originalLocation.latitude) - \(originalLocation.longitude)", coordinates: originalLocation)
             mapView.removeAnnotations(mapView.annotations)
             mapView.addAnnotation(annotation)
-            
-            cardinalPoints = CardinalPoints(originalLocation: originalLocation)
-            viewModel?.locations.removeAll()
-            viewModel?.locationCount = 0
-            fetchWeatherData(withLocation: originalLocation)
-            
-            fetchWeatherData(withLocation: cardinalPoints.north, point: .north)
-            fetchWeatherData(withLocation: cardinalPoints.south, point: .south)
-            fetchWeatherData(withLocation: cardinalPoints.east, point: .east)
-            fetchWeatherData(withLocation: cardinalPoints.west, point: .west)
+            startFetchingForAllLocations(originalLocation: originalLocation)
         }
+    }
+    
+    func startFetchingForAllLocations(originalLocation: CLLocationCoordinate2D){
+        showHUD()
+        viewModel?.locations.removeAll()
+        viewModel?.locationCount = 0
+        cardinalPoints = CardinalPoints(originalLocation: originalLocation)
+        fetchWeatherData(withLocation: originalLocation)
+        fetchWeatherData(withLocation: cardinalPoints.north, point: .north)
+        fetchWeatherData(withLocation: cardinalPoints.south, point: .south)
+        fetchWeatherData(withLocation: cardinalPoints.east, point: .east)
+        fetchWeatherData(withLocation: cardinalPoints.west, point: .west)
     }
     
     func fetchWeatherData(withLocation location: CLLocationCoordinate2D, point: LocationDirection? = nil){
@@ -155,10 +158,12 @@ extension HomeController: UISearchBarDelegate {
 extension HomeController: HomeViewModelDelegate {
     
     func dataFetched(weather: [Weather]) {
+        hideHUD()
         showFinalData(weather: weather)
     }
     
     func errorOccured(error: Error) {
+        hideHUD()
         self.presentAlert(title: "Sorry!", messsage: error.localizedDescription)
     }
     
