@@ -12,4 +12,17 @@ enum LocationDirection: Double {
     case east = 90
     case south = 180
     case west = 270
+    
+    var title: String {
+        switch self {
+        case .north:
+            return "North"
+        case .east:
+            return "East"
+        case .south:
+            return "South"
+        case .west:
+            return "West"
+        }
+    }
 }
